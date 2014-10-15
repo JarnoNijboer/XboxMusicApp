@@ -4,7 +4,7 @@ module.exports = function (grunt) {
 
 	require('load-grunt-tasks')(grunt);
 
-	var atomShellVersion = '0.17.2';
+	var atomShellVersion = '0.18.0';
 	var outDir = 'out';
 
 	// Project configuration.
@@ -85,15 +85,23 @@ module.exports = function (grunt) {
 				'Gruntfile.js',
 				'app/scripts/**/*.js'
 			]
+		},
+		'build-atom-shell-app': {
+			options: {
+				atom_shell_version: 'v' + atomShellVersion,
+				platforms: ['darwin']
+			}
 		}
 	});
 
 	grunt.registerTask('run', 'run...', function () {
 		if (process.platform === 'darwin') {
 			grunt.task.run('shell:mac');
-		} else if (process.platform === 'win32') {
+		}
+		else if (process.platform === 'win32') {
 			grunt.task.run('shell:win');
-		} else {
+		}
+		else {
 			grunt.task.run('shell:linux');
 		}
 	});
@@ -101,9 +109,11 @@ module.exports = function (grunt) {
 	grunt.registerTask('dist', 'dist...', function () {
 		if (process.platform === 'darwin') {
 			grunt.task.run('shell:copyMacApp');
-		} else if (process.platform === 'win32') {
+		}
+		else if (process.platform === 'win32') {
 			grunt.task.run('shell:copyWinApp');
-		} else {
+		}
+		else {
 			grunt.task.run('shell:copyLinuxApp');
 		}
 	});
@@ -113,4 +123,6 @@ module.exports = function (grunt) {
 		'jshint',
 		'parallel'
 	]);
+
+	grunt.loadNpmTasks('grunt-atom-shell-app-builder');
 };

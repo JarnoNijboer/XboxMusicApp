@@ -2,8 +2,11 @@
 
 (function(require) {
 	var globalShortcut = require('global-shortcut'),
-		window = null,
-		keys = [{
+			ipc = require('ipc'),
+			mainWindow;
+
+	var shortcuts = (function () {
+		var keys = keys = [{
 			keyCode: 'MediaNextTrack',
 			action: 'music-next-track'
 		}, {
@@ -14,35 +17,37 @@
 			action: 'music-play-pause'
 		}];
 
-	var init = function (objWindow) {
-		window = objWindow;
+		var init = function (window) {
+			if (!window) {
+				throw new Exception('window param is not defined');
+			}
 
-		register();
-	};
+			mainWindow = window;
+			this.register();
+		};
 
-	var register = function() {
-		keys.forEach(function (key) {
-			globalShortcut.register(key.keyCode, function () {
-				sendMessage(key.action);
+		var register = function () {
+			this.keys.forEach(function (key) {
+				globalShortcut.register(key.keyCode, function () {
+					var webContent = mainWindow.webContents;
+
+					webContent.send('app-shortcut', key.action);
+				});
 			});
-		});
-	};
+		};
 
-	var unregisterAll = function () {
-		globalShortcut.unregisterAll();
-	};
+		var unregisterAll = function () {
+			globalShortcut.unregisterAll();
+		};
 
-	var sendMessage = function (key) {
-		if (window == null) return;
+		return {
+			keys: keys,
+			init: init,
+			register: register,
+			unregisterAll: unregisterAll
+		};
+	}());
 
-		var webContent = window.webContents;
-
-		webContent.send('app-shortcut', key);
-	};
-
-	module.exports = {
-		init: init,
-		unregisterAll: unregisterAll
-	};
+	module.exports = shortcuts;
 
 }(require));

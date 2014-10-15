@@ -13,13 +13,17 @@ body {
 	background-color: #222;
 }
 
-iframe {
-	width: 100%;
-	height: 0;
+.hide {
+	display: none;
 }
 
-iframe.loaded {
+#ifAppHost {
+	width: 100%;
 	height: 100%;
+}
+
+#ifAppHost.hide {
+	height: 0;
 }
 
 #loader {
@@ -35,7 +39,3 @@ iframe.loaded {
 	#loader img:first-child {
 		margin-top: 60px;
 	}
-
-.hide {
-	display: none;
-}

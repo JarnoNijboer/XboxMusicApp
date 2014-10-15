@@ -1,6 +1,7 @@
 {
   "name": "XboxMusicApp",
   "version": "0.1.0",
+  "repository": "https://github.com/JarnoNijboer/XboxMusicApp",
   "dependencies": {
     "grunt": "~0.4.5"
   },

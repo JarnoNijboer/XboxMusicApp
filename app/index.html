@@ -10,25 +10,13 @@
 		<br><br>
 		<img src="img/loading.gif">
 	</div>
-	<iframe id="ifrmXboxMusic" name="xboxmusic-disable-x-frame-options" src="https://music.xbox.com" sandbox="none"></iframe>
+	<iframe id="ifAppHost" class="hide" name="xboxmusic-disable-x-frame-options" src="https://music.xbox.com" sandbox="none"></iframe>
 	<script>
-		var webHooks = require('./js/web-hooks');
-		webHooks.init(window);
-
-		var loader = document.getElementById('loader');
-		var iframe = document.getElementById('ifrmXboxMusic');
-
-		var iframeLoad = function () {
-			if (!loader.classList.contains('hide')){
-				loader.classList.add('hide');
-			}
-
-			if (!iframe.classList.contains('loaded')){
-				iframe.classList.add('loaded');
-			}
-		};
-
-		iframe.addEventListener('load', iframeLoad);
+		var bootstrapper = null;
+		(function (require, bootstrapper){
+			bootstrapper = require('./js/web-bootstrapper');
+			bootstrapper.init();
+		}(require, bootstrapper));
 	</script>
 </body>
 </html>
