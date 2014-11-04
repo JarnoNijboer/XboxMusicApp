@@ -4,7 +4,7 @@ module.exports = function (grunt) {
 
 	require('load-grunt-tasks')(grunt);
 
-	var atomShellVersion = '0.18.0';
+	var atomShellVersion = '0.19.1';
 	var outDir = 'out';
 
 	// Project configuration.
@@ -85,12 +85,6 @@ module.exports = function (grunt) {
 				'Gruntfile.js',
 				'app/scripts/**/*.js'
 			]
-		},
-		'build-atom-shell-app': {
-			options: {
-				atom_shell_version: 'v' + atomShellVersion,
-				platforms: ['darwin']
-			}
 		}
 	});
 
@@ -123,6 +117,4 @@ module.exports = function (grunt) {
 		'jshint',
 		'parallel'
 	]);
-
-	grunt.loadNpmTasks('grunt-atom-shell-app-builder');
 };

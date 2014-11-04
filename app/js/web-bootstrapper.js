@@ -24,7 +24,8 @@
 
 		var init = function () {
 			this.elm = getElm('ifAppHost');
-			this.elm.addEventListener('load', this.events.load);
+			// this.elm.addEventListener('load', this.events.load);
+			// this.elm.addEventListener('did-finish-load', this.events.load);
 
 			music.init();
 		};
