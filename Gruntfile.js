@@ -4,7 +4,7 @@ module.exports = function (grunt) {
 
 	require('load-grunt-tasks')(grunt);
 
-	var atomShellVersion = '0.19.1';
+	var atomShellVersion = '0.19.4';
 	var outDir = 'out';
 
 	// Project configuration.
@@ -15,19 +15,19 @@ module.exports = function (grunt) {
 			outputDir: outDir,
 			rebuild: true
 		},
-		watch: {
-			scripts: {
-				options: {
-					livereload: true
-				},
-				files: [
-					'Gruntfile.js',
-					'app/**/*.js',
-					'app/**/*.html',
-					'app/**/*.css'
-				]
-			}
-		},
+		// watch: {
+		// 	scripts: {
+		// 		options: {
+		// 			livereload: true
+		// 		},
+		// 		files: [
+		// 			'Gruntfile.js',
+		// 			'app/**/*.js',
+		// 			'app/**/*.html',
+		// 			'app/**/*.css'
+		// 		]
+		// 	}
+		// },
 		shell: {
 			mac: {
 				command: outDir + '/Atom.app/Contents/MacOS/Atom app'
@@ -66,25 +66,25 @@ module.exports = function (grunt) {
 			},
 			mix: {
 				tasks: [
-					{
-						grunt: true,
-						args: ['watch']
-					},
+					// {
+					// 	grunt: true,
+					// 	args: ['watch']
+					// },
 					{
 						grunt: true,
 						args: ['run']
 					}
 				]
 			}
-		},
-		jshint: {
-			options: {
-				jshintrc: '.jshintrc'
-			},
-			all: [
-				'Gruntfile.js',
-				'app/scripts/**/*.js'
-			]
+		// },
+		// jshint: {
+		// 	options: {
+		// 		jshintrc: '.jshintrc'
+		// 	},
+		// 	all: [
+		// 		'Gruntfile.js',
+		// 		'app/scripts/**/*.js'
+		// 	]
 		}
 	});
 
@@ -114,7 +114,7 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('default', [
 		'download-atom-shell',
-		'jshint',
+		// 'jshint',
 		'parallel'
 	]);
 };

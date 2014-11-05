@@ -1,50 +1,42 @@
 'use strict';
 
 (function (require) {
-	var global, cntLoader, music;
+	var webview, cntLoader = null;
 
-	global = (1,eval)('this');
-	cntLoader = null;
-	music = require('./web-music');
+	webview = require('./web-view.js');
 
-	var iframe = (function () {
+	var bootloader = (function () {
 		var elm = null;
 
 		var events = {
 			load: function () {
-				if (!cntLoader.classList.contains('hide')) {
-					cntLoader.classList.add('hide');
+				if (elm.classList.contains('hide')) {
+					elm.classList.remove('hide');
 				}
 
-				if (this.classList.contains('hide')) {
-					this.classList.remove('hide');
+				if (!cntLoader.classList.contains('hide')) {
+					cntLoader.classList.add('hide');
 				}
 			}
 		};
 
 		var init = function () {
-			this.elm = getElm('ifAppHost');
-			// this.elm.addEventListener('load', this.events.load);
-			// this.elm.addEventListener('did-finish-load', this.events.load);
+			elm = document.getElementById('wvAppHost');
 
-			music.init();
+			elm.addEventListener('did-start-loading', events.load);
 		};
 
 		return {
-			elm: elm,
 			events: events,
 			init: init
 		};
 	}());
 
 	var init = function () {
-		cntLoader = getElm('loader');
+		cntLoader = document.getElementById('loader');
 
-		iframe.init();
-	};
-
-	var getElm = function (id) {
-		return global.document.getElementById(id);
+		bootloader.init();
+		webview.init();
 	};
 
 	module.exports = {

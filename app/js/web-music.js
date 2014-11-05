@@ -1,20 +1,17 @@
 'use strict';
 
 (function (require) {
-	var global, iframe, ipc;
+	var ipc;
 
-	global = (1,eval)('this');
 	ipc = require('ipc');
 
 	var music = {
 		init: function () {
-			iframe = global.document.getElementById('ifAppHost');
-
 			this.handler();
 		},
 		handler: function () {
 			var that = this;
-			ipc.on('app-shortcut', function (key) {
+			ipc.on('web-shortcut', function (key) {
 				switch (key) {
 					case 'music-next-track':
 						that.nextTrack();
@@ -58,10 +55,7 @@
 	};
 
 	var getElm = function (selector) {
-		if (!iframe) return;
-
-		return iframe.contentDocument
-								 .querySelector(selector);
+		return document.querySelector(selector);
 	};
 
 	module.exports = music;

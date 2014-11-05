@@ -27,7 +27,7 @@ app.on('ready', function () {
 		height: 768,
 		'min-width': 960,
 		icon: icon,
-		'dark-theme': true,
+		// 'auto-hide-menu-bar': true,
 		'web-preferences': {
 			plugins: true,
 			'direct-write': true,
@@ -36,7 +36,7 @@ app.on('ready', function () {
 	});
 
 	// and load the index.html of the app.
-	mainWindow.loadUrl('file://' + __dirname + '/index.html');
+	// mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
 	appShortcut.init(mainWindow);
 

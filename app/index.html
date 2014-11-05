@@ -5,16 +5,14 @@
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-	<!-- <div id="loader">
-		<img src="img/logo.png">
-		<br><br>
-		<img src="img/loading.gif">
-	</div> -->
-	<!-- <iframe id="ifAppHost" class="hide" name="xboxmusic-disable-x-frame-options" src="https://music.xbox.com" sandbox="none"></iframe> -->
-	<webview id="ifAppHost" src="https://music.xbox.com"></webview>
+	<div id="loader">
+		<img class="logo" src="img/logo.png">
+		<img class="loading" src="img/loading.gif">
+	</div>
+	<!-- <webview id="wvAppHost" src="https://music.xbox.com" preload="./js/web-music.js" plugins autosize="on"></webview> -->
 	<script>
 		// var bootstrapper = null;
-		// (function (require, bootstrapper){
+		// (function (require, bootstrapper) {
 		// 	bootstrapper = require('./js/web-bootstrapper');
 		// 	bootstrapper.init();
 		// }(require, bootstrapper));
